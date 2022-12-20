@@ -19,7 +19,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(in);
         setContentView(R.layout.activity_main);
         if(in == null){
-            mensaje= "INI";
+            try {
+                SharedPreferences p = getSharedPreferences("estado", Context.MODE_PRIVATE);
+                mensaje = p.getString("mensajeAlmacenado", "INI-alternativo");
+            }catch (Exception e){
+                mensaje= "INI";
+
+            }
         }else{
            mensaje = in.getString("mensajeFuturo");
         }
